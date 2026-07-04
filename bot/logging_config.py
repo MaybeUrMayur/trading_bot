@@ -4,20 +4,20 @@ def setup_logger():
     logger = logging.getLogger("trading_bot")
     logger.setLevel(logging.DEBUG)
 
-    # File handler (detailed logs)
+    # File
     fh = logging.FileHandler('trading_bot.log')
     fh.setLevel(logging.DEBUG)
 
-    # Console handler (summary)
+    # Console
     ch = logging.StreamHandler()
     ch.setLevel(logging.INFO)
 
-    # Formatter
+    # Format
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     fh.setFormatter(formatter)
     ch.setFormatter(formatter)
 
-    # Add handlers
+    # Handlers
     if not logger.handlers:
         logger.addHandler(fh)
         logger.addHandler(ch)

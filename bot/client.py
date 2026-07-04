@@ -4,7 +4,7 @@ from binance.exceptions import BinanceAPIException, BinanceRequestException
 from dotenv import load_dotenv
 from bot.logging_config import logger
 
-# Load environment variables from .env file
+# Env
 load_dotenv()
 
 def get_testnet_client() -> Client:
@@ -16,12 +16,10 @@ def get_testnet_client() -> Client:
         raise ValueError("Please set BINANCE_API_KEY and BINANCE_API_SECRET in your .env file")
         
     try:
-        # Initialize client with testnet=True for Futures testnet
+        # Client
         client = Client(api_key, api_secret, testnet=True)
-        # Note: python-binance `testnet=True` defaults to spot testnet in older versions or might need URL tweaking for futures.
-        # But for USDT-M Futures on Testnet, python-binance has a testnet option that correctly configures `testnet=True` for futures if using futures endpoints.
-        # It's better to explicitly set the API URL for futures testnet to be safe, but python-binance's futures endpoints handle testnet=True flag internally.
-        logger.debug("Initialized Binance Client for Testnet.")
+        # URL
+        client.FUTURES_URL = 'https://testnet.binancefuture.com/fapi'
         return client
     except Exception as e:
         logger.error(f"Failed to initialize Binance client: {e}")

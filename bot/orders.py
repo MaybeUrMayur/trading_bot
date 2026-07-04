@@ -14,10 +14,10 @@ def place_order(client: Client, symbol: str, side: str, order_type: str, quantit
         }
         
         if order_type == 'LIMIT':
-            params['timeInForce'] = 'GTC' # Good Till Canceled is required for LIMIT orders
+            params['timeInForce'] = 'GTC' # GTC
             params['price'] = price
 
-        # We use futures_create_order for Binance Futures
+        # Futures
         response = client.futures_create_order(**params)
         
         logger.info(f"Order placed successfully: Order ID {response.get('orderId')}")

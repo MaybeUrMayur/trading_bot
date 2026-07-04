@@ -16,17 +16,17 @@ def main():
     args = parser.parse_args()
 
     try:
-        # 1. Validation
+        # Validation
         symbol = args.symbol.upper()
         order_type = validate_order_type(args.type)
         side = validate_side(args.side)
         quantity = validate_quantity(args.quantity)
         price = validate_price(order_type, args.price)
 
-        # 2. Get Client
+        # Client
         client = get_testnet_client()
 
-        # 3. Place Order
+        # Order
         print(f"\n--- Order Request Summary ---")
         print(f"Symbol:   {symbol}")
         print(f"Side:     {side}")
@@ -39,7 +39,7 @@ def main():
         print("Sending request to Binance Futures Testnet...")
         response = place_order(client, symbol, side, order_type, quantity, price)
 
-        # 4. Print Response
+        # Response
         print("\n--- Order Response ---")
         print(f"Status:       SUCCESS")
         print(f"Order ID:     {response.get('orderId')}")
